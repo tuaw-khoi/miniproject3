@@ -11,7 +11,7 @@ const page = await browser.newPage({
   viewport: { width: 430, height: 840 },
   recordVideo: { dir: 'docs', size: { width: 430, height: 840 } },
 });
-await page.goto('http://127.0.0.1:4173', { waitUntil: 'networkidle' });
+await page.goto('http://127.0.0.1:4173/web_demo/', { waitUntil: 'networkidle' });
 const pause = ms => page.waitForTimeout(ms);
 await pause(1200);
 await page.getByRole('button', { name: /quét hóa đơn/i }).click();

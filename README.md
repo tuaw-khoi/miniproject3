@@ -44,8 +44,8 @@ not available. It uses the same visual language and sample transaction flow,
 but does **not** claim to run the native OCR, SQLite or private-file features.
 
 ```bash
-python3 -m http.server 4173 --directory web_demo
-# Open http://127.0.0.1:4173 in a 430px-wide browser viewport.
+python3 -m http.server 4173
+# Open http://127.0.0.1:4173/web_demo/ in a 430px-wide browser viewport.
 ```
 
 The recorded browser walkthrough is
