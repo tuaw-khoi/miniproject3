@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Báo cáo Mini-Project 3 - ReceiptFlow</title>
+  <style>
+    @page{size:A4;margin:16mm 17mm 15mm}*{box-sizing:border-box}body{margin:0;color:#102f2c;font-family:"Times New Roman",Times,serif;font-size:11.2pt;line-height:1.34}.page{min-height:266mm;position:relative;page-break-after:always}.page:last-child{page-break-after:auto}h1{font-size:20pt;line-height:1.22;margin:10px 0 7px;text-align:center;text-transform:uppercase;color:#174f43}h2{font-size:14.5pt;margin:0 0 8px;color:#174f43;border-bottom:1px solid #a8beb7;padding-bottom:3px}h3{font-size:12pt;margin:10px 0 4px;color:#174f43}p{margin:0 0 7px;text-align:justify}ul{margin:4px 0 8px;padding-left:20px}li{margin:2px 0}.center{text-align:center}.bold{font-weight:bold}.spacer{height:13px}.meta{width:84%;margin:17px auto 16px}.meta td{border:0;padding:3px 2px}.meta .label{width:145px;font-weight:bold}table{width:100%;border-collapse:collapse;margin:7px 0 9px}th,td{border:1px solid #607b73;padding:5px 6px;vertical-align:top}th{background:#e6f1ed;text-align:center;color:#174f43}.small{font-size:9.7pt}.caption{font-size:9.3pt;font-style:italic;text-align:center;margin-top:3px}.page-no{position:absolute;bottom:0;left:0;right:0;text-align:center;font-size:9.5pt;color:#526862}.flow{margin:7px 0 9px;padding:8px 11px;border:1px solid #789088;background:#f6faf8}.flow p{margin:2px 0;text-align:left}.screens{display:flex;justify-content:center;gap:16px;margin:8px 0 5px}.screens figure{margin:0;width:38%;text-align:center}.screens img{display:block;width:100%;height:238px;object-fit:contain;object-position:center top;border:1px solid #789088;background:#fff;border-radius:4px}.screens.three{gap:9px}.screens.three figure{width:31%}.screens.three img{height:220px}.architecture{margin:8px 0 10px;padding:10px 12px;border:1px solid #607b73;background:#f6faf8;font-family:"Courier New",monospace;font-size:9.3pt;line-height:1.45;white-space:pre-line}.code{margin:7px 0 9px;padding:8px 10px;border:1px solid #789088;background:#f5f7f6;font-family:"Courier New",monospace;font-size:8.8pt;white-space:pre-wrap}.two-col{display:table;width:calc(100% + 16px);border-spacing:8px 0;margin-left:-8px}.two-col>div{display:table-cell;width:50%;vertical-align:top}.box{border:1px solid #789088;padding:8px 9px;background:#fbfdfc}.status{border-left:4px solid #16856d;background:#eff9f5;padding:7px 10px;margin:7px 0}.warn{border-left-color:#c48a22;background:#fff8e9}.links{font-size:9.1pt}.links td:first-child{font-weight:bold;width:26%}.no-margin{margin-bottom:0}
+  </style>
+</head>
+<body>
+  <section class="page">
+    <p class="center bold">BÁO CÁO MINI-PROJECT #3</p>
+    <h1>ReceiptFlow<br />Ứng dụng quét hóa đơn và quản lý chi tiêu</h1>
+    <p class="center">Học phần: Lập trình ứng dụng di động</p>
+    <div class="spacer"></div>
+    <table class="meta">
+      <tr><td class="label">Sinh viên thực hiện:</td><td>Lê Công Tuấn Khôi</td></tr>
+      <tr><td class="label">Mã sinh viên:</td><td>23IT130</td></tr>
+      <tr><td class="label">Tên dự án:</td><td>ReceiptFlow</td></tr>
+      <tr><td class="label">Công nghệ:</td><td>Flutter, Dart, ML Kit, SQLite, Riverpod</td></tr>
+      <tr><td class="label">Repository:</td><td>https://github.com/tuaw-khoi/miniproject3</td></tr>
+    </table>
+
+    <h2>1. Giới thiệu bài toán</h2>
+    <p>Việc ghi chép chi tiêu thủ công thường bị bỏ quên, trong khi các ứng dụng phụ thuộc cloud làm phát sinh yêu cầu đăng nhập, kết nối mạng và lo ngại về ảnh hóa đơn cá nhân. ReceiptFlow được xây dựng như một ứng dụng Android offline-first: nhận dạng hóa đơn ngay trên thiết bị, yêu cầu người dùng kiểm tra kết quả, sau đó lưu giao dịch và ảnh vào bộ nhớ cục bộ.</p>
+    <p>Mục tiêu của dự án là rút ngắn quá trình nhập chi tiêu nhưng vẫn giữ quyền kiểm soát cho người dùng. Ứng dụng không dùng tài khoản, không gửi ảnh lên máy chủ và không cần API OCR trả phí. Dữ liệu minh họa được tách khỏi dữ liệu cá nhân để phục vụ thuyết trình an toàn.</p>
+
+    <h2>2. Các chức năng đã thực hiện</h2>
+    <table class="small">
+      <tr><th>Nhóm chức năng</th><th>Nội dung</th></tr>
+      <tr><td>Quét hóa đơn</td><td>Camera preview, flash, tap-to-focus, khung căn chỉnh, chọn ảnh thư viện, crop/rotate và ảnh mẫu tổng hợp.</td></tr>
+      <tr><td>OCR và parser</td><td>ML Kit Latin chạy trên thiết bị; phân tích cửa hàng, tổng tiền, ngày và gợi ý danh mục; luôn có bước review.</td></tr>
+      <tr><td>Quản lý giao dịch</td><td>Thêm thủ công, lưu, xem chi tiết, sửa, xóa, tìm kiếm và lọc theo danh mục/khoảng ngày.</td></tr>
+      <tr><td>Lưu trữ offline</td><td>SQLite cho giao dịch; ảnh riêng tư và thumbnail; dọn file mồ côi khi khởi động.</td></tr>
+      <tr><td>Phân tích</td><td>Donut chart theo danh mục và weekly bar chart có animation, chạm để xem giá trị.</td></tr>
+      <tr><td>Tiện ích</td><td>Xuất CSV UTF-8, tiếng Việt/English, sáng/tối/theo hệ thống và dữ liệu demo riêng.</td></tr>
+    </table>
+    <div class="page-no">1</div>
+  </section>
+
+  <section class="page">
+    <h2>3. Luồng sử dụng và giao diện</h2>
+    <p>Ứng dụng khởi động vào trang Tổng quan. Người dùng có thể quét hóa đơn hoặc nhập thủ công. Với luồng OCR, ảnh chỉ được lưu cùng giao dịch sau khi người dùng xác nhận. Nếu hủy crop, OCR lỗi hoặc rời form, file tạm được xóa để không làm đầy bộ nhớ.</p>
+    <div class="flow">
+      <p><b>Bước 1:</b> Chụp ảnh, chọn từ thư viện hoặc dùng hóa đơn mẫu tổng hợp.</p>
+      <p><b>Bước 2:</b> Crop/rotate ảnh; ML Kit nhận dạng văn bản ngay trên thiết bị.</p>
+      <p><b>Bước 3:</b> Parser tìm merchant, tổng tiền, ngày và danh mục; cảnh báo trường mơ hồ.</p>
+      <p><b>Bước 4:</b> Người dùng kiểm tra, sửa dữ liệu và bấm Lưu.</p>
+      <p><b>Bước 5:</b> SQLite lưu giao dịch; ảnh gốc/thumbnail được chuyển vào thư mục riêng tư.</p>
+      <p><b>Bước 6:</b> Tìm kiếm, lọc, xem biểu đồ hoặc xuất CSV.</p>
+    </div>
+    <h3>3.1. Tổng quan và review OCR</h3>
+    <div class="screens">
+      <figure><img src="screenshots/overview.png" alt="Tổng quan ReceiptFlow" /><figcaption>Hình 1. Dashboard tháng, tuần và giao dịch gần đây.</figcaption></figure>
+      <figure><img src="screenshots/ocr-review.png" alt="Review OCR" /><figcaption>Hình 2. Kết quả OCR cần được kiểm tra trước khi lưu.</figcaption></figure>
+    </div>
+    <h3>3.2. Nguyên tắc nhập liệu</h3>
+    <p>Số tiền phải lớn hơn 0 và không vượt ngưỡng dữ liệu cho phép; merchant không được để trống. Nút lưu được khóa trong khi xử lý để tránh tạo hai bản ghi do chạm nhanh. OCR chỉ đưa ra gợi ý, không phải độ tin cậy tuyệt đối và không được phép bỏ qua bước review.</p>
+    <div class="status warn"><b>Phạm vi ảnh minh họa:</b> các hình trong report và video được chụp từ mobile web demo có nhãn rõ ràng. Camera, ML Kit, SQLite và private image storage là chức năng native của APK Android.</div>
+    <div class="page-no">2</div>
+  </section>
+
+  <section class="page">
+    <h2>4. Kiến trúc ứng dụng</h2>
+    <p>Dự án chia giao diện, trạng thái, dữ liệu và dịch vụ nền tảng thành các lớp riêng. Widget chỉ hiển thị/nhận thao tác; AppController điều phối trạng thái; repository và image store chịu trách nhiệm lưu trữ.</p>
+    <div class="architecture">Flutter Screens + Material 3 + Generated Localization
+                    |
+                    v
+              Riverpod AppController
+              /                   \
+TransactionRepository           ReceiptImageStore
+          |                           |
+          v                           v
+        SQLite             private image files + thumbnails
+
+Camera / Gallery -> Crop / Rotate -> ML Kit OCR -> ReceiptParser
+                                                    |
+                                                    v
+                                             Editable Review
+                                                    |
+                                                    v
+                                                   Save</div>
+    <div class="two-col">
+      <div class="box"><h3>4.1. Tầng giao diện</h3><p>GoRouter tổ chức bốn tab chính và các route quét, chỉnh sửa, chi tiết. Material 3 cung cấp theme; ARB sinh localization tiếng Việt và tiếng Anh. CustomPainter vẽ biểu đồ mà không cần thư viện chart ngoài.</p></div>
+      <div class="box"><h3>4.2. Trạng thái</h3><p>Riverpod Notifier lưu danh sách giao dịch, locale, theme và chế độ demo. Sau mỗi thao tác save/delete, state được cập nhật và sắp xếp lại theo ngày mà không cần tải lại toàn bộ màn hình.</p></div>
+    </div>
+    <h3>4.3. Mô hình dữ liệu</h3>
+    <table class="small">
+      <tr><th>Trường</th><th>Kiểu/ý nghĩa</th><th>Quy tắc</th></tr>
+      <tr><td>id</td><td>UUID chuỗi</td><td>Khóa chính, không lặp.</td></tr>
+      <tr><td>merchant</td><td>Tên cửa hàng</td><td>Không rỗng, cho phép sửa sau OCR.</td></tr>
+      <tr><td>amount</td><td>Số nguyên VND</td><td>Dương, tránh sai số số thực.</td></tr>
+      <tr><td>date/category</td><td>Ngày địa phương và enum</td><td>Ngày lưu YYYY-MM-DD; category ổn định khi đổi ngôn ngữ.</td></tr>
+      <tr><td>image/thumbnail</td><td>Đường dẫn file riêng tư</td><td>Chỉ lưu sau khi transaction hợp lệ.</td></tr>
+      <tr><td>raw_text</td><td>Văn bản OCR</td><td>Dùng kiểm tra và chỉnh sửa, không tải lên server.</td></tr>
+    </table>
+    <h3>4.4. Cấu trúc thư mục</h3>
+    <div class="code">lib/core/                  : state, services, theme và design tokens
+lib/features/capture/      : camera, gallery, crop và vòng đời camera
+lib/features/receipts/     : ML Kit OCR, parser và image store
+lib/features/transactions/ : model, SQLite repository, editor, list, detail
+lib/features/analytics/    : dashboard, donut và weekly bar chart
+lib/features/settings/     : locale, theme, demo data và CSV
+test/, integration_test/   : unit, widget, persistence và OCR integration</div>
+    <div class="page-no">3</div>
+  </section>
+
+  <section class="page">
+    <h2>5. Xử lý OCR, dữ liệu và an toàn</h2>
+    <h3>5.1. Thuật toán ReceiptParser</h3>
+    <p>Văn bản OCR được chuẩn hóa về chữ thường và bỏ dấu để so khớp ổn định. Regex nhận ngày dạng ngày/tháng/năm và các mẫu tiền Việt Nam. Mỗi dòng chứa số tiền được chấm điểm: từ khóa “tổng thanh toán/total” được ưu tiên; “tiền khách đưa/cash/change/giảm giá” bị loại. Parser không chọn đơn giản số lớn nhất vì hóa đơn có thể chứa tiền khách đưa lớn hơn tổng cần trả.</p>
+    <div class="code">Ảnh → OCR blocks/lines → normalize → money/date candidates
+→ score positive keywords → reject cash/change/discount
+→ merchant heuristic → category suggestion → warning → review</div>
+    <h3>5.2. Độ bền dữ liệu và quyền riêng tư</h3>
+    <ul>
+      <li>SQLite dùng khóa chính và kiểm tra amount; edit chỉ thành công khi đúng một bản ghi tồn tại.</li>
+      <li>Ảnh sau khi lưu được đặt trong app-private directory; thumbnail 320 px giảm chi phí hiển thị danh sách.</li>
+      <li>Nếu lưu ảnh lỗi, các file tạo dở được xóa. Startup pruning loại file không còn được transaction tham chiếu.</li>
+      <li>CSV đặt BOM UTF-8 và trung hòa ô bắt đầu bằng <b>=, +, -, @</b> để hạn chế formula injection.</li>
+      <li>Không đăng nhập, không backend và không gửi ảnh/OCR text lên cloud.</li>
+    </ul>
+    <h3>5.3. Giao dịch, phân tích và cài đặt</h3>
+    <div class="screens three">
+      <figure><img src="screenshots/transactions.png" alt="Danh sách giao dịch" /><figcaption>Hình 3. Tìm kiếm và lọc giao dịch.</figcaption></figure>
+      <figure><img src="screenshots/analytics.png" alt="Phân tích" /><figcaption>Hình 4. Donut và biểu đồ tuần tương tác.</figcaption></figure>
+      <figure><img src="screenshots/settings.png" alt="Cài đặt" /><figcaption>Hình 5. Locale, theme, demo data và CSV.</figcaption></figure>
+    </div>
+    <p>Dữ liệu demo nằm trong database riêng. Khi tắt demo, ứng dụng trở lại database cá nhân mà không trộn giao dịch mẫu. Locale/theme được giữ bằng SharedPreferences, còn category ID trong SQLite không phụ thuộc ngôn ngữ hiển thị.</p>
+    <div class="page-no">4</div>
+  </section>
+
+  <section class="page">
+    <h2>6. Kiểm thử, build và kết luận</h2>
+    <h3>6.1. Kết quả xác minh</h3>
+    <table class="small">
+      <tr><th>Hạng mục</th><th>Nội dung kiểm tra</th><th>Kết quả</th></tr>
+      <tr><td>Format + Analyze</td><td>Dart format và static analysis trên toàn bộ lib/test/integration_test.</td><td>Đạt, không có issue.</td></tr>
+      <tr><td>Unit/Widget test</td><td>Expense/filter/CSV, parser tiền-ngày-merchant, SQLite CRUD, validate form, locale và chart.</td><td>51/51 test đạt.</td></tr>
+      <tr><td>Android debug</td><td>Gradle assembleDebug với Flutter 3.44.7, Dart 3.12.2 và Java 21.</td><td>Build local đạt.</td></tr>
+      <tr><td>GitHub Actions</td><td>Checkout → pub get → format → analyze → test → build APK → upload artifact.</td><td>Workflow thành công.</td></tr>
+      <tr><td>Web presentation</td><td>12 chương, ảnh mẫu, tìm/lọc, chart, settings và trang build; quay tại viewport 430×840.</td><td>Đạt.</td></tr>
+    </table>
+    <div class="status"><b>APK trên GitHub:</b> workflow “Flutter checks” build artifact <i>receiptflow-debug-apk</i>. Run kiểm chứng: https://github.com/tuaw-khoi/miniproject3/actions/runs/37878921204</div>
+    <h3>6.2. Các trường hợp test tiêu biểu</h3>
+    <ul>
+      <li>Phân biệt “TỔNG THANH TOÁN” với tiền khách đưa và tiền thừa.</li>
+      <li>Từ chối ngày không hợp lệ, amount bằng 0 và merchant rỗng.</li>
+      <li>Lưu SQLite, đóng repository, mở lại và đọc đúng dữ liệu.</li>
+      <li>Filter kết hợp query/category/date; CSV không cho text trở thành công thức.</li>
+      <li>Form chỉ save một lần; đổi locale/theme không làm thay đổi category ID.</li>
+    </ul>
+    <h3>6.3. Giới hạn và hướng phát triển</h3>
+    <p>Bản đầu tập trung hóa đơn in Latin và tiền VND. Chữ viết tay, ảnh quá mờ, đa tiền tệ, perspective correction và bóc tách từng line item chưa nằm trong phạm vi. Camera/flash/tap-focus và hiệu năng OCR cần kiểm thử bổ sung trên điện thoại vật lý; web demo không thay thế kiểm chứng native.</p>
+    <h3>6.4. Kết luận</h3>
+    <p>ReceiptFlow hoàn thành một quy trình khép kín từ ảnh hóa đơn đến dữ liệu chi tiêu và biểu đồ, đồng thời ưu tiên offline, riêng tư và khả năng sửa kết quả OCR. Kiến trúc module, repository SQLite, quản lý vòng đời file và bộ kiểm thử giúp dự án có thể tiếp tục mở rộng mà không làm mất tính ổn định của bản hiện tại.</p>
+    <h3>6.5. Tài liệu bàn giao</h3>
+    <table class="links">
+      <tr><td>Source code</td><td>https://github.com/tuaw-khoi/miniproject3</td></tr>
+      <tr><td>APK artifact</td><td>GitHub Actions → Flutter checks → receiptflow-debug-apk</td></tr>
+      <tr><td>Video chi tiết</td><td>docs/receiptflow-detailed-demo.webm</td></tr>
+      <tr><td>Report</td><td>docs/ReceiptFlow_Report.html và docs/ReceiptFlow_Report.pdf</td></tr>
+    </table>
+    <div class="page-no">5</div>
+  </section>
+</body>
+</html>

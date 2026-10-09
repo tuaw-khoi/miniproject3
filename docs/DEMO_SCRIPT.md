@@ -1,18 +1,23 @@
-# ReceiptFlow — 2–3 minute demo
+# ReceiptFlow — detailed 1:52 presentation
 
-Use a synthetic/non-sensitive printed receipt. Record the actual Android screen; do not present a mockup as an app recording.
+The repository includes `receiptflow-detailed-demo.webm`, a clearly labelled
+mobile web presentation recorded at 430×840. It demonstrates the UI and
+explains the native implementation without claiming that browser JavaScript is
+running ML Kit or SQLite. A physical-device recording remains the final proof
+for camera, flash, focus and offline OCR performance.
 
 | Time | Action | Narration |
 | --- | --- | --- |
-| 0:00–0:15 | Show home and enable airplane mode | ReceiptFlow stores expenses locally and runs OCR on device. |
-| 0:15–0:50 | Open camera, toggle flash, tap focus, capture, crop/rotate | The image is cropped before processing. |
-| 0:50–1:20 | Show recognized amount/date/merchant; correct a field and select category | Parser distinguishes total, cash tendered and change. Review is required. |
-| 1:20–1:40 | Save, open transaction and receipt image | SQLite and private image storage persist the expense. |
-| 1:40–2:05 | Open insights, tap donut legend and weekly bars | Canvas charts animate and respond to selection. |
-| 2:05–2:25 | Search/filter and share CSV; change to English | Filters control exported records. |
-| 2:25–2:45 | Close and reopen application | Saved data remains offline. Show repo and APK links. |
-
-If only an emulator is available, record gallery/sample OCR and label the video **emulator demonstration**. Physical camera, flash and tap-focus verification remain pending until tested on a phone.
+| 0:00–0:06 | Animated title card | Introduce ReceiptFlow as an offline Flutter Android expense tracker. |
+| 0:06–0:13 | Dashboard | Explain monthly/today totals, weekly bars and recent expenses. |
+| 0:13–0:29 | Sample receipt and review | Explain camera/crop/ML Kit, synthetic input and mandatory review before save. |
+| 0:29–0:39 | Save and transaction list | Explain local SQLite persistence and ordering by date. |
+| 0:39–0:58 | Search, category filter and detail | Demonstrate query/filter behavior plus edit/delete and private image lifecycle. |
+| 0:58–1:13 | Donut and weekly chart | Explain category aggregation and interactive CustomPainter charts. |
+| 1:13–1:26 | Manual entry | Show merchant, amount, date and category validation without OCR. |
+| 1:26–1:40 | Settings | Explain vi/en localization, light/dark themes and isolated demo data. |
+| 1:40–1:47 | CSV and build status | Explain filtered UTF-8 CSV, formula neutralization, 51 tests and GitHub APK. |
+| 1:47–1:52 | Closing card | Summarize the stack and offline/privacy goals. |
 
 ## Physical-device checklist
 

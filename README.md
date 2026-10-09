@@ -48,9 +48,11 @@ python3 -m http.server 4173
 # Open http://127.0.0.1:4173/web_demo/ in a 430px-wide browser viewport.
 ```
 
-The recorded browser walkthrough is
-[`docs/receiptflow-web-demo.webm`](docs/receiptflow-web-demo.webm). Regenerate
-it with `NODE_PATH=/tmp/receiptflow-playwright/node_modules node
+The detailed 12-chapter browser walkthrough is
+[`docs/receiptflow-detailed-demo.webm`](docs/receiptflow-detailed-demo.webm).
+The five-page submission report is available as
+[`docs/ReceiptFlow_Report.pdf`](docs/ReceiptFlow_Report.pdf). Regenerate the
+video with `NODE_PATH=/tmp/receiptflow-playwright/node_modules node
 scripts/record_web_demo.mjs` after installing Playwright and its FFmpeg helper.
 
 ## Verification
