@@ -36,6 +36,23 @@ On the current workstation Flutter is installed at `~/development/flutter/bin`; 
 
 **Tiếng Việt:** Vào **Quét hóa đơn** để chụp, chọn ảnh từ thư viện hoặc quét ảnh mẫu bằng ML Kit. Kiểm tra cửa hàng, số tiền, ngày và danh mục trước khi lưu. Ảnh mẫu là hóa đơn tổng hợp, không phải dữ liệu cá nhân.
 
+## Mobile web demo and recording
+
+The installable product is the Android APK. A small, clearly labelled mobile
+web demo is included for browser-based presentations when an Android device is
+not available. It uses the same visual language and sample transaction flow,
+but does **not** claim to run the native OCR, SQLite or private-file features.
+
+```bash
+python3 -m http.server 4173 --directory web_demo
+# Open http://127.0.0.1:4173 in a 430px-wide browser viewport.
+```
+
+The recorded browser walkthrough is
+[`docs/receiptflow-web-demo.webm`](docs/receiptflow-web-demo.webm). Regenerate
+it with `NODE_PATH=/tmp/receiptflow-playwright/node_modules node
+scripts/record_web_demo.mjs` after installing Playwright and its FFmpeg helper.
+
 ## Verification
 
 ```bash
